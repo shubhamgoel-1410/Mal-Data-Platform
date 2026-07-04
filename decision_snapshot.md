@@ -1,3 +1,6 @@
+<img width="1117" height="333" alt="Screenshot 2026-07-05 at 2 52 18 AM" src="https://github.com/user-attachments/assets/638e6f68-5b34-4045-b808-53727d4419f8" />
+
+
 # Decision Traceability – Immutable Decision Snapshot
 
 # For every credit application, we create an immutable snapshot of all the information used to make the credit decision. Instead of relying on the latest customer profile, fraud score, or credit bureau report—which may change over time—we capture the exact inputs at the time the decision was made.
