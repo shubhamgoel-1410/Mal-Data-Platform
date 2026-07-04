@@ -1,26 +1,5 @@
-## Overall Flow
+<img width="962" height="507" alt="Screenshot 2026-07-05 at 3 05 37 AM" src="https://github.com/user-attachments/assets/6e0eb6e0-6930-4a4b-99de-b8bcbb1aa7fe" />
 
-                Silver Tables
-                     │
-                     ▼
-             DQ Rule Engine
-                     │
-      ┌──────────────┴──────────────┐
-      │                             │
-      ▼                             ▼
-Passed Records               Failed Records
-      │                             │
-      ▼                             ▼
-Trusted Silver            Quarantine Table
-      │
-      ▼
-Generate DQ Metrics
-      │
-      ▼
-dq_check_result
-      │
-      ▼
-Alerting
 
 ## 1. DQ Rule Configuration
 ### `dq_rule_config - Table Schema`
