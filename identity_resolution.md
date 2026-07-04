@@ -1,3 +1,6 @@
+<img width="1444" height="217" alt="Screenshot 2026-07-05 at 3 41 53 AM" src="https://github.com/user-attachments/assets/71b8e31b-23b3-419b-bc04-64a225060784" />
+
+
 # Step 1: Get all customers from the delta
 WITH customer_delta AS (
 SELECT
