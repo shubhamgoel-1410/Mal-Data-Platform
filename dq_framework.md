@@ -107,3 +107,90 @@ Cross-Source Checks (Most Important)
 2. One customer should have only one Emirates ID
 3. No duplicate customers after identity resolution
 
+
+###################################################
+# Metadata Driven DQ Framework
+###################################################
+
+dq_rules = load_rule_configuration()
+
+for table in silver_tables:
+
+    records = read_incremental(table)
+
+    rules = dq_rules[table]
+
+    for record in records:
+
+        failed_rules = []
+
+        ###################################
+        # Execute Rules
+        ###################################
+
+        for rule in rules:
+
+            if not execute(rule, record):
+
+                failed_rules.append(rule)
+
+        ###################################
+        # Update DQ Status
+        ###################################
+
+        if len(failed_rules) == 0:
+
+            record.dq_status = "PASS"
+
+            record.critical_failure = False
+
+        elif contains_critical_rule(failed_rules):
+
+            record.dq_status = "FAIL"
+
+            record.critical_failure = True
+
+        else:
+
+            record.dq_status = "WARNING"
+
+            record.critical_failure = False
+
+        record.failed_rules = failed_rules
+
+        update_silver(record)
+
+        ###################################
+        # Failure Log
+        ###################################
+
+        if record.dq_status == "FAIL":
+
+            write_failure_log(record)
+
+    ###################################
+    # Dataset Metrics
+    ###################################
+
+    metrics = calculate_metrics(table)
+
+    insert_dq_result(metrics)
+
+###################################
+# Alerting
+###################################
+
+for metrics in dq_check_result:
+
+    if metrics.pass_rate < 99:
+
+        send_slack(metrics)
+
+    if metrics.critical_failures > 0:
+
+        send_email(metrics)
+
+    if metrics.duplicate_rate > 2:
+
+        create_incident(metrics)
+
