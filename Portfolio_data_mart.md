@@ -1,4 +1,9 @@
-Following star schema design:
+Pipeline Design - 
+<img width="1264" height="372" alt="Screenshot 2026-07-05 at 7 45 51 AM" src="https://github.com/user-attachments/assets/33c0a5b9-759f-4bc9-9aa9-1a894092843e" />
+
+Star Schema Design - 
+<img width="645" height="686" alt="Screenshot 2026-07-05 at 7 46 59 AM" src="https://github.com/user-attachments/assets/fb0f6f59-d4fe-48a0-8fb6-af72613aa2ca" />
+
 I would design a Portfolio Monitoring Mart in the Gold layer using a star schema. The central fact table would contain one record per loan or credit application, enriched with customer, bureau, fraud, AML, and repayment information. Around it, I would maintain dimensions such as Customer, Date, and Risk Band. This mart would power BI dashboards for the Risk team, enabling them to monitor KPIs like approval rate, portfolio exposure, delinquency (30/60/90+ DPD), fraud trends, AML alerts, and risk distribution without requiring complex joins across operational tables. The mart is optimized for analytical queries and refreshed on a scheduled basis (e.g., hourly or daily depending on business requirements).
 
 Fact Table:
